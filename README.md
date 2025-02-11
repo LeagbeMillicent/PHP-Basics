@@ -312,7 +312,185 @@ echo $int_cast;
 ```
 
 ---
-## Conclusion
-These are fundamental PHP concepts, covering variables, data types, comments, and basic operations. Keep practicing to improve your PHP skills!
 
+
+PHP Type Casting Guide
+Type casting in PHP allows you to convert variables from one data type to another using explicit casting. Below are different ways to cast data types in PHP.
+
+📌 Cast to String
+To cast a value to a string, use the (string) statement:
+
+php
+Copy
+Edit
+$a = 5;       // Integer  
+$b = 5.34;    // Float  
+$c = "hello"; // String  
+$d = true;    // Boolean  
+$e = NULL;    // NULL  
+
+$a = (string) $a;  
+$b = (string) $b;  
+$c = (string) $c;  
+$d = (string) $d;  
+$e = (string) $e;  
+
+// Verify data type  
+var_dump($a, $b, $c, $d, $e);
+📌 Cast to Integer
+To cast a value to an integer, use the (int) statement:
+
+php
+Copy
+Edit
+$a = 5;              // Integer  
+$b = 5.34;           // Float  
+$c = "25 kilometers"; // String  
+$d = "kilometers 25"; // String  
+$e = "hello";        // String  
+$f = true;           // Boolean  
+$g = NULL;           // NULL  
+
+$a = (int) $a;  
+$b = (int) $b;  
+$c = (int) $c;  
+$d = (int) $d;  
+$e = (int) $e;  
+$f = (int) $f;  
+$g = (int) $g;  
+📌 Cast to Float
+To cast a value to a float, use the (float) statement:
+
+php
+Copy
+Edit
+$a = 5;              // Integer  
+$b = 5.34;           // Float  
+$c = "25 kilometers"; // String  
+$d = "kilometers 25"; // String  
+$e = "hello";        // String  
+$f = true;           // Boolean  
+$g = NULL;           // NULL  
+
+$a = (float) $a;  
+$b = (float) $b;  
+$c = (float) $c;  
+$d = (float) $d;  
+$e = (float) $e;  
+$f = (float) $f;  
+$g = (float) $g;  
+📌 Cast to Boolean
+To cast a value to a boolean, use the (bool) statement:
+
+php
+Copy
+Edit
+$a = 5;       // Integer  
+$b = 5.34;    // Float  
+$c = 0;       // Integer  
+$d = -1;      // Integer  
+$e = 0.1;     // Float  
+$f = "hello"; // String  
+$g = "";      // String  
+$h = true;    // Boolean  
+$i = NULL;    // NULL  
+
+$a = (bool) $a;  
+$b = (bool) $b;  
+$c = (bool) $c;  
+$d = (bool) $d;  
+$e = (bool) $e;  
+$f = (bool) $f;  
+$g = (bool) $g;  
+$h = (bool) $h;  
+$i = (bool) $i;  
+📌 If a value is 0, NULL, false, or empty, it converts to false; otherwise, it converts to true. Even -1 converts to true.
+
+📌 Cast to Array
+To cast a value to an array, use the (array) statement:
+
+php
+Copy
+Edit
+$a = 5;       // Integer  
+$b = 5.34;    // Float  
+$c = "hello"; // String  
+$d = true;    // Boolean  
+$e = NULL;    // NULL  
+
+$a = (array) $a;  
+$b = (array) $b;  
+$c = (array) $c;  
+$d = (array) $d;  
+$e = (array) $e;  
+🔹 When converting to an array, most data types convert into an indexed array with one element. NULL values convert to an empty array.
+
+Example: Converting Objects into Arrays
+php
+Copy
+Edit
+class Car {  
+  public $color;  
+  public $model;  
+  public function __construct($color, $model) {  
+    $this->color = $color;  
+    $this->model = $model;  
+  }  
+}  
+
+$myCar = new Car("red", "Volvo");  
+$myCar = (array) $myCar;  
+
+var_dump($myCar);
+🔹 Objects convert into associative arrays where property names become the keys and property values become the values.
+
+📌 Cast to Object
+To cast a value to an object, use the (object) statement:
+
+php
+Copy
+Edit
+$a = 5;       // Integer  
+$b = 5.34;    // Float  
+$c = "hello"; // String  
+$d = true;    // Boolean  
+$e = NULL;    // NULL  
+
+$a = (object) $a;  
+$b = (object) $b;  
+$c = (object) $c;  
+$d = (object) $d;  
+$e = (object) $e;  
+🔹 When converting to an object, most data types convert into an object with one property named "scalar", holding the corresponding value. NULL converts to an empty object.
+
+Example: Converting Arrays into Objects
+php
+Copy
+Edit
+$a = array("Volvo", "BMW", "Toyota"); // Indexed array  
+$b = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43"); // Associative array  
+
+$a = (object) $a;  
+$b = (object) $b;  
+🔹 Indexed arrays convert into objects with the index number as the property name and the value as the property value.
+🔹 Associative arrays convert into objects with keys as property names and values as property values.
+
+📌 Cast to NULL
+To cast a value to NULL, use the (unset) statement:
+
+php
+Copy
+Edit
+$a = 5;       // Integer  
+$b = 5.34;    // Float  
+$c = "hello"; // String  
+$d = true;    // Boolean  
+$e = NULL;    // NULL  
+
+$a = (unset) $a;  
+$b = (unset) $b;  
+$c = (unset) $c;  
+$d = (unset) $d;  
+$e = (unset) $e;  
+🔹 This removes the variable value and sets it to NULL.
 
