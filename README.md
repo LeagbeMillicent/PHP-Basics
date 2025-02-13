@@ -369,4 +369,152 @@ URL: `http://example.com/index.php?name=John&age=30`
 echo "Name: " . $_GET['name'] . "<br>";
 echo "Age: " . $_GET['age'];
 
+### PHP Constants
+
+A constant is an identifier (name) for a simple value. The value cannot be changed during the script.
+
+A valid constant name starts with a letter or underscore (no $ sign before the constant name).
+
+**Note:** Unlike variables, constants are automatically global across the entire script.
+
+### Create a PHP Constant
+To create a constant, use the `define()` function.
+
+#### Syntax:
+```php
+define(name, value);
+```
+
+**Parameters:**
+- `name`: Specifies the name of the constant
+- `value`: Specifies the value of the constant
+
+#### Example:
+```php
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+```
+
+## PHP Constant Arrays
+From PHP 7, you can create an Array constant using the `define()` function.
+
+#### Example:
+Create an Array constant:
+```php
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+```
+
+# PHP Operators
+Operators are used to perform operations on variables and values.
+
+PHP divides the operators into the following groups:
+- Arithmetic operators
+- Assignment operators
+- Comparison operators
+- Increment/Decrement operators
+- Logical operators
+- String operators
+- Array operators
+- Conditional assignment operators
+
+## PHP Arithmetic Operators
+The PHP arithmetic operators are used with numeric values to perform common arithmetical operations, such as addition, subtraction, multiplication, etc.
+
+| Operator | Name | Example | Result |
+|----------|------|---------|--------|
+| `+` | Addition | `$x + $y` | Sum of `$x` and `$y` |
+| `-` | Subtraction | `$x - $y` | Difference of `$x` and `$y` |
+| `*` | Multiplication | `$x * $y` | Product of `$x` and `$y` |
+| `/` | Division | `$x / $y` | Quotient of `$x` and `$y` |
+| `%` | Modulus | `$x % $y` | Remainder of `$x` divided by `$y` |
+| `**` | Exponentiation | `$x ** $y` | `$x` raised to the power of `$y` |
+
+## PHP Assignment Operators
+The PHP assignment operators are used with numeric values to assign values to variables.
+
+| Assignment | Same as... | Description |
+|------------|-----------|-------------|
+| `x = y` | `x = y` | Assigns value of `y` to `x` |
+| `x += y` | `x = x + y` | Addition assignment |
+| `x -= y` | `x = x - y` | Subtraction assignment |
+| `x *= y` | `x = x * y` | Multiplication assignment |
+| `x /= y` | `x = x / y` | Division assignment |
+| `x %= y` | `x = x % y` | Modulus assignment |
+
+## PHP Comparison Operators
+The PHP comparison operators are used to compare two values (number or string):
+
+| Operator | Name | Example | Result |
+|----------|------|---------|--------|
+| `==` | Equal | `$x == $y` | True if `$x` is equal to `$y` |
+| `===` | Identical | `$x === $y` | True if `$x` is equal to `$y`, and they are of the same type |
+| `!=` | Not equal | `$x != $y` | True if `$x` is not equal to `$y` |
+| `<>` | Not equal | `$x <> $y` | True if `$x` is not equal to `$y` |
+| `!==` | Not identical | `$x !== $y` | True if `$x` is not equal to `$y`, or they are not of the same type |
+| `>` | Greater than | `$x > $y` | True if `$x` is greater than `$y` |
+| `<` | Less than | `$x < $y` | True if `$x` is less than `$y` |
+| `>=` | Greater than or equal to | `$x >= $y` | True if `$x` is greater than or equal to `$y` |
+| `<=` | Less than or equal to | `$x <= $y` | True if `$x` is less than or equal to `$y` |
+
+## PHP Logical Operators
+The PHP logical operators are used to combine conditional statements.
+
+| Operator | Name | Example | Result |
+|----------|------|---------|--------|
+| `and` | And | `$x and $y` | True if both `$x` and `$y` are true |
+| `or` | Or | `$x or $y` | True if either `$x` or `$y` is true |
+| `xor` | Xor | `$x xor $y` | True if either `$x` or `$y` is true, but not both |
+| `&&` | And | `$x && $y` | True if both `$x` and `$y` are true |
+| `||` | Or | `$x || $y` | True if either `$x` or `$y` is true |
+| `!` | Not | `!$x` | True if `$x` is not true |
+
+## PHP Conditional Statements
+Conditional statements allow different actions for different conditions.
+
+- `if` statement - executes some code if one condition is true
+- `if...else` statement - executes one block if condition is true, another if false
+- `if...elseif...else` statement - multiple conditions
+- `switch` statement - selects one of many blocks of code
+
+### Example:
+```php
+$t = date("H");
+
+if ($t < "10") {
+  echo "Good morning!";
+} elseif ($t < "20") {
+  echo "Good day!";
+} else {
+  echo "Good night!";
+}
+```
+
+## PHP Loops
+Loops execute a block of code multiple times.
+
+- `while` - loops while a condition is true
+- `do...while` - executes at least once, then repeats if condition is true
+- `for` - loops a set number of times
+- `foreach` - loops through an array
+
+### Example (for loop):
+```php
+for ($x = 0; $x <= 10; $x++) {
+  echo "The number is: $x <br>";
+}
+```
+
+### Example (foreach loop):
+```php
+$colors = array("red", "green", "blue");
+foreach ($colors as $color) {
+  echo "$color <br>";
+}
+```
+
 
