@@ -521,3 +521,110 @@ foreach ($colors as $color) {
 Reference to W3Schools : https://www.w3schools.com/html/html_forms.asp
 
 
+
+### Handling Form Submission
+```php
+<?php
+// define variables and set to empty values
+$name = $email = $gender = $comment = $website = "";
+$name, $email, $gender, $comment, $website
+```
+These are initialized as empty strings.
+This prevents errors if no data is submitted.
+
+3. Handling the Form Submission ($_SERVER["REQUEST_METHOD"])
+```php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
+  $website = test_input($_POST["website"]);
+  $comment = test_input($_POST["comment"]);
+  $gender = test_input($_POST["gender"]);
+}
+$_SERVER["REQUEST_METHOD"] → Checks how the form is submitted.
+"POST" means the form was submitted using the POST method.
+$_POST["name"] → Retrieves the value of the name field from the form.
+test_input() → This function cleans the input before storing it.
+
+```
+4. Input Sanitization with test_input()
+``` php
+function test_input($data) {
+  $data = trim($data);            // Removes unnecessary spaces
+  $data = stripslashes($data);    // Removes backslashes (\)
+  $data = htmlspecialchars($data);// Converts special characters to HTML entities
+  return $data;
+}
+
+```
+Purpose: Prevents security issues like Cross-Site Scripting (XSS) and improper input formatting.
+trim() → Removes whitespace from the beginning and end.
+stripslashes() → Removes backslashes (\) to prevent escaping attacks.
+htmlspecialchars() → Converts <, >, ", ', & into HTML entities to prevent malicious code injection.
+5. HTML Form
+```html
+<h2>PHP Form Validation Example</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+<form> → Creates an HTML form.
+method="post" → Submits form data using the POST method.
+action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"
+$_SERVER["PHP_SELF"] → Submits the form to the same page.
+htmlspecialchars() → Prevents security vulnerabilities like XSS attacks.
+```
+6. Form Fields
+```html
+
+  Name: <input type="text" name="name">
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <br><br>
+  Website: <input type="text" name="website">
+  <br><br>
+  Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+  <br><br>
+<input type="text" name="name"> → A text input field for the name.
+<textarea> → A multi-line input field for the comment.
+```
+7. Radio Buttons for Gender Selection
+```html
+  Gender:
+  <input type="radio" name="gender" value="female">Female
+  <input type="radio" name="gender" value="male">Male
+  <input type="radio" name="gender" value="other">Other
+  <br><br>
+```
+Radio buttons let users select one option from three choices (Female, Male, Other).
+name="gender" → Ensures only one option can be selected.
+8. Submit Button
+```html
+  <input type="submit" name="submit" value="Submit">  
+</form>
+<input type="submit"> → Submits the form.
+name="submit" →
+```
+Helps identify when the form is submitted.
+9. Displaying Submitted Data
+```php
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
+```
+Displays user input after submission.
+Each variable ($name, $email, etc.) is echoed inside <br> tags for better readability.
+How This Works in Action
+User fills out the form and clicks Submit.
+The data is sent via POST to the same page (action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>").
+PHP sanitizes the input (test_input()).
+The values are stored in variables ($name, $email, etc.).
+The submitted data is displayed below the form
+
+
