@@ -517,4 +517,7 @@ foreach ($colors as $color) {
 }
 ```
 
+### HTML FORMS
+Reference to W3Schools : https://www.w3schools.com/html/html_forms.asp
+
 
