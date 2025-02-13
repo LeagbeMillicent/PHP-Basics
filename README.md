@@ -522,7 +522,7 @@ Reference to W3Schools : https://www.w3schools.com/html/html_forms.asp
 
 
 
-### Handling Form Submission
+## Handling Form Submission
 ```php
 <?php
 // define variables and set to empty values
