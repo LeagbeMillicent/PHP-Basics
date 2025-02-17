@@ -1099,6 +1099,162 @@ echo count($cars);
 
 
 
+# PHP Global Variables - Superglobals
+
+Superglobals were introduced in PHP 4.1.0 and are built-in variables that are always available in all scopes.
+
+## PHP Global Variables - Superglobals
+
+Some predefined variables in PHP are "superglobals," which means that they are always accessible, regardless of scope. You can access them from any function, class, or file without having to do anything special.
+
+The PHP superglobal variables are:
+
+- `$GLOBALS`
+- `$_SERVER`
+- `$_REQUEST`
+- `$_POST`
+- `$_GET`
+- `$_FILES`
+- `$_ENV`
+- `$_COOKIE`
+- `$_SESSION`
+
+### `$GLOBALS`
+`$GLOBALS` is an array that contains all global variables.
+
+#### Global Variables
+Global variables can be accessed from any scope. Variables of the outermost scope are automatically global and can be used by any scope, e.g., inside a function.
+
+To use a global variable inside a function, you must either define it as global with the `global` keyword or refer to it using the `$GLOBALS` syntax.
+
+#### Example: Accessing Global Variables
+```php
+$x = 75;
+  
+function myfunction() {
+  echo $GLOBALS['x'];
+}
+
+myfunction();
+```
+This differs from other programming languages where global variables are available without specifically referring to them as global.
+
+### `$_SERVER`
+`$_SERVER` is a PHP super global variable that holds information about headers, paths, and script locations.
+
+#### Example: Using `$_SERVER`
+```php
+echo $_SERVER['PHP_SELF'];
+echo $_SERVER['SERVER_NAME'];
+echo $_SERVER['HTTP_HOST'];
+echo $_SERVER['HTTP_REFERER'];
+echo $_SERVER['HTTP_USER_AGENT'];
+echo $_SERVER['SCRIPT_NAME'];
+```
+
+### `$_REQUEST`
+`$_REQUEST` is a PHP super global variable that contains submitted form data and all cookie data. It combines data from `$_GET`, `$_POST`, and `$_COOKIE`.
+
+#### Example: Using `$_REQUEST`
+```php
+$name = $_REQUEST['fname'];
+echo $name;
+```
+
+### `$_POST`
+`$_POST` contains an array of variables received via the HTTP POST method.
+
+#### Example: Using `$_POST`
+```php
+$name = $_POST['fname'];
+echo $name;
+```
+
+### `$_GET`
+`$_GET` contains an array of variables received via the HTTP GET method.
+
+#### Example: Using `$_GET`
+```php
+<?php
+echo "Study " . $_GET["subject"] . " at " . $_GET["web"];
+?>
+```
+
+---
+
+# PHP Regular Expressions
+
+## What is a Regular Expression?
+A regular expression is a sequence of characters that forms a search pattern. It can be a single character or a more complex pattern used for text search and replace operations.
+
+### Syntax
+```php
+$exp = "/w3schools/i";
+```
+- `/` is the delimiter
+- `w3schools` is the pattern being searched for
+- `i` is a modifier making the search case-insensitive
+
+### Regular Expression Functions
+
+| Function | Description |
+|----------|-------------|
+| `preg_match()` | Returns 1 if the pattern was found in the string, otherwise 0 |
+| `preg_match_all()` | Returns the number of times the pattern was found in the string |
+| `preg_replace()` | Returns a new string where matched patterns are replaced |
+
+#### Example: Using `preg_match()`
+```php
+$str = "Visit W3Schools";
+$pattern = "/w3schools/i";
+echo preg_match($pattern, $str);
+```
+
+#### Example: Using `preg_replace()`
+```php
+$str = "Visit Microsoft!";
+$pattern = "/microsoft/i";
+echo preg_replace($pattern, "W3Schools", $str);
+```
+
+### Regular Expression Modifiers
+
+| Modifier | Description |
+|----------|-------------|
+| `i` | Case-insensitive search |
+| `m` | Multiline search |
+| `u` | Enables correct matching of UTF-8 encoded patterns |
+
+### Regular Expression Patterns
+
+| Pattern | Description |
+|---------|-------------|
+| `[abc]` | Finds one or many of the characters inside the brackets |
+| `[^abc]` | Finds any character NOT between the brackets |
+| `[a-z]` | Finds any character alphabetically between two letters |
+| `[0-9]` | Finds any digit |
+
+### Metacharacters
+
+| Metacharacter | Description |
+|--------------|-------------|
+| `|` | Finds a match for any one of the patterns separated by `|` |
+| `.` | Finds any character |
+| `^` | Matches the beginning of a string |
+| `$` | Matches the end of a string |
+
+#### Example: Using Metacharacters
+```php
+$str = "Apples and bananas.";
+$pattern = "/ba(na){2}/i";
+echo preg_match($pattern, $str);
+```
+
+
+
+
+
+
 
 
 
