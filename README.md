@@ -1495,6 +1495,229 @@ if (isset($_POST["submit"])) {
 
 
 
+**PHP Cookies**
+
+**What is a Cookie?**
+A cookie is often used to identify a user. It is a small file that the server embeds on the user's computer. Each time the same computer requests a page with a browser, it will send the cookie too. With PHP, you can create and retrieve cookie values.
+
+**Create Cookies With PHP**
+A cookie is created using the `setcookie()` function.
+
+**Syntax:**
+```php
+setcookie(name, value, expire, path, domain, secure, httponly);
+```
+Only the `name` parameter is required; all others are optional.
+
+**PHP Create/Retrieve a Cookie**
+Example:
+```php
+<?php
+$cookie_name = "user";
+$cookie_value = "John Doe";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+?>
+<html>
+<body>
+<?php
+if (!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+    echo "Cookie '" . $cookie_name . "' is set!<br>";
+    echo "Value is: " . $_COOKIE[$cookie_name];
+}
+?>
+</body>
+</html>
+```
+*Note:* `setcookie()` must appear before the `<html>` tag.
+
+**Modify a Cookie Value**
+To modify a cookie, reset it using `setcookie()`:
+```php
+<?php
+$cookie_name = "user";
+$cookie_value = "Alex Porter";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+?>
+```
+
+**Delete a Cookie**
+To delete a cookie, set its expiration date in the past:
+```php
+<?php
+setcookie("user", "", time() - 3600);
+?>
+```
+
+**Check if Cookies are Enabled**
+```php
+<?php
+setcookie("test_cookie", "test", time() + 3600, '/');
+?>
+<html>
+<body>
+<?php
+if (count($_COOKIE) > 0) {
+    echo "Cookies are enabled.";
+} else {
+    echo "Cookies are disabled.";
+}
+?>
+</body>
+</html>
+```
+
+---
+
+**PHP Sessions**
+
+**What is a PHP Session?**
+A session is a way to store information across multiple pages. Unlike a cookie, the information is not stored on the user's computer.
+
+**Start a PHP Session**
+A session starts with `session_start()`:
+```php
+<?php
+session_start();
+$_SESSION["favcolor"] = "green";
+$_SESSION["favanimal"] = "cat";
+echo "Session variables are set.";
+?>
+```
+
+**Retrieve PHP Session Variable Values**
+```php
+<?php
+session_start();
+echo "Favorite color is " . $_SESSION["favcolor"] . "<br>";
+echo "Favorite animal is " . $_SESSION["favanimal"] . "";
+?>
+```
+
+**Modify a Session Variable**
+```php
+<?php
+session_start();
+$_SESSION["favcolor"] = "yellow";
+?>
+```
+
+**Destroy a PHP Session**
+To remove all session variables and destroy the session:
+```php
+<?php
+session_start();
+session_unset();
+session_destroy();
+?>
+```
+
+---
+
+**PHP Filters**
+
+**Validating and Sanitizing Data**
+PHP filters validate and sanitize external input.
+
+**PHP `filter_var()` Function**
+
+**Sanitize a String:**
+```php
+<?php
+$str = "<h1>Hello World!</h1>";
+$newstr = filter_var($str, FILTER_SANITIZE_STRING);
+echo $newstr;
+?>
+```
+
+**Validate an Integer:**
+```php
+<?php
+$int = 100;
+if (!filter_var($int, FILTER_VALIDATE_INT) === false) {
+    echo "Integer is valid";
+} else {
+    echo "Integer is not valid";
+}
+?>
+```
+
+**Sanitize and Validate an Email Address:**
+```php
+<?php
+$email = "john.doe@example.com";
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    echo "$email is a valid email address";
+} else {
+    echo "$email is not a valid email address";
+}
+?>
+```
+
+---
+
+**PHP JSON Handling**
+
+**Encoding JSON:**
+```php
+<?php
+$age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+echo json_encode($age);
+?>
+```
+
+**Decoding JSON:**
+```php
+<?php
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$obj = json_decode($jsonobj);
+echo $obj->Peter;
+?>
+```
+
+**Looping Through JSON Data:**
+```php
+<?php
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+$obj = json_decode($jsonobj);
+foreach ($obj as $key => $value) {
+    echo $key . " => " . $value . "<br>";
+}
+?>
+```
+
+---
+
+**PHP Exceptions**
+
+**Throwing an Exception:**
+```php
+<?php
+function divide($dividend, $divisor) {
+    if ($divisor == 0) {
+        throw new Exception("Division by zero");
+    }
+    return $dividend / $divisor;
+}
+?>
+```
+
+**Handling Exceptions with try...catch:**
+```php
+<?php
+try {
+    echo divide(5, 0);
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+```
+
+
+
+
 
 
 
