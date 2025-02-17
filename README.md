@@ -927,7 +927,177 @@ echo addNumbers(1.2, 5.2); // Output: 6
 
 ---
 
-This guide covers the basics of **PHP functions** including **user-defined functions, arguments, return values, references, variadic functions, and type declarations**.
+
+## PHP Functions
+
+The real power of PHP comes from its functions.
+
+PHP has more than **1000 built-in functions**, and in addition, you can create your own custom functions.
+
+---
+
+### PHP Built-in Functions
+PHP has over **1000 built-in functions** that can be called directly from within a script to perform a specific task.
+
+> Please check out our **PHP reference** for a complete overview of the PHP built-in functions.
+
+---
+
+### PHP User Defined Functions
+Besides the built-in PHP functions, it is possible to create your own functions.
+
+- A function is a **block of statements** that can be used repeatedly in a program.
+- A function **will not execute automatically** when a page loads.
+- A function will be executed by a **call to the function**.
+
+#### Create a Function
+A user-defined function declaration starts with the keyword `function`, followed by the **name of the function**:
+
+```php
+function myMessage() {
+  echo "Hello world!";
+}
+```
+
+> **Note:** A function name must start with a **letter or an underscore**. Function names are **NOT case-sensitive**.
+
+**Tip:** Give the function a name that reflects what the function does!
+
+#### Call a Function
+To call the function, just write its name followed by parentheses `()`:
+
+```php
+function myMessage() {
+  echo "Hello world!";
+}
+
+myMessage();
+```
+
+The function **outputs "Hello world!"**.
+
+---
+
+### PHP Function Arguments
+Information can be passed to functions through **arguments**.
+
+#### Example: Function with One Argument
+```php
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim");
+familyName("Borge");
+```
+
+#### Example: Function with Two Arguments
+```php
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+```
+
+---
+
+### PHP Default Argument Value
+A function can have a **default parameter**:
+
+```php
+function setHeight($minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+```
+
+---
+
+### PHP Functions - Returning Values
+To **return a value**, use the `return` statement:
+
+```php
+function sum($x, $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+```
+
+---
+
+### PHP Arrays
+
+An array stores multiple values in one single variable:
+
+#### Example
+```php
+$cars = array("Volvo", "BMW", "Toyota");
+```
+
+### What is an Array?
+An array is a special variable that can hold many values under a single name, and you can access the values by referring to an index number or name.
+
+### PHP Array Types
+In PHP, there are three types of arrays:
+
+- **Indexed arrays** - Arrays with a numeric index
+- **Associative arrays** - Arrays with named keys
+- **Multidimensional arrays** - Arrays containing one or more arrays
+
+### Working With Arrays
+In this tutorial, you will learn how to work with arrays, including:
+
+- Create Arrays
+- Access Arrays
+- Update Arrays
+- Add Array Items
+- Remove Array Items
+- Sort Arrays
+
+### Array Items
+Array items can be of any data type.
+
+The most common are **strings and numbers** (int, float), but array items can also be **objects, functions, or even arrays**.
+
+You can have different data types in the same array.
+
+#### Example
+Array items of four different data types:
+
+```php
+$myArr = array("Volvo", 15, ["apples", "bananas"], "myFunction");
+```
+
+### Array Functions
+The real strength of PHP arrays is the built-in array functions, like the `count()` function for counting array items:
+
+#### Example
+How many items are in the `$cars` array:
+
+```php
+$cars = array("Volvo", "BMW", "Toyota");
+echo count($cars);
+```
+
+> For a complete reference of all array functions, go to our **complete PHP Array Reference**.
+
+---
+
+
 
 
 
