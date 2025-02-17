@@ -1719,6 +1719,274 @@ try {
 
 
 
+# PHP - What is OOP?
+
+From PHP5, you can also write PHP code in an object-oriented style.
+
+Object-Oriented programming is faster and easier to execute.
+
+## PHP What is OOP?
+
+**OOP** stands for **Object-Oriented Programming**.
+
+Procedural programming is about writing procedures or functions that perform operations on the data, while **object-oriented programming** is about creating objects that contain both data and functions.
+
+### Advantages of OOP over Procedural Programming:
+- OOP is **faster and easier** to execute.
+- OOP provides a **clear structure** for the programs.
+- OOP helps to keep the PHP code **DRY** ("Don't Repeat Yourself") and makes the code easier to **maintain, modify, and debug**.
+- OOP makes it possible to create **fully reusable applications** with less code and shorter development time.
+
+> **Tip:** The "Don't Repeat Yourself" (**DRY**) principle is about reducing the repetition of code. Extract common code into a single place and reuse it instead of repeating it.
+
+---
+
+# PHP - What are Classes and Objects?
+
+**Classes and objects** are the two main aspects of **object-oriented programming**.
+
+When the individual objects are created, they **inherit all the properties and behaviors** from the class, but each object will have different values for the properties.
+
+## PHP OOP - Classes and Objects
+
+A **class** is a template for objects, and an **object** is an instance of a class.
+
+### Example: OOP Case
+Let's assume we have a class named `Fruit`. A `Fruit` can have properties like `name`, `color`, `weight`, etc.
+
+```php
+<?php
+class Fruit {
+  // code goes here...
+}
+?>
+Declaring a Class
+Below we declare a class named Fruit consisting of two properties ($name and $color) and two methods (set_name() and get_name()).
+
+php
+Copy
+Edit
+<?php
+class Fruit {
+  // Properties
+  public $name;
+  public $color;
+
+  // Methods
+  function set_name($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+?>
+Note: In a class, variables are called properties and functions are called methods!
+
+Defining Objects
+Classes are nothing without objects! We can create multiple objects from a class. Each object has all the properties and methods defined in the class, but they will have different property values.
+
+php
+Copy
+Edit
+<?php
+$apple = new Fruit();
+$banana = new Fruit();
+$apple->set_name('Apple');
+$banana->set_name('Banana');
+
+echo $apple->get_name();
+echo "<br>";
+echo $banana->get_name();
+?>
+PHP - The $this Keyword
+The $this keyword refers to the current object and is only available inside methods.
+
+Example 1: Using $this inside a method
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+  function set_name($name) {
+    $this->name = $name;
+  }
+}
+$apple = new Fruit();
+$apple->set_name("Apple");
+
+echo $apple->name;
+?>
+Example 2: Directly changing a property outside the class
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+}
+$apple = new Fruit();
+$apple->name = "Apple";
+
+echo $apple->name;
+?>
+PHP - instanceof
+You can use the instanceof keyword to check if an object belongs to a specific class.
+
+php
+Copy
+Edit
+<?php
+$apple = new Fruit();
+var_dump($apple instanceof Fruit);
+?>
+PHP OOP - Constructor
+PHP - The __construct Function
+A constructor allows you to initialize an object's properties upon creation.
+
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+
+$apple = new Fruit("Apple");
+echo $apple->get_name();
+?>
+PHP OOP - Destructor
+PHP - The __destruct Function
+A destructor is called when the object is destructed or when the script is stopped or exited.
+
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+  public $color;
+
+  function __construct($name) {
+    $this->name = $name;
+  }
+  function __destruct() {
+    echo "The fruit is {$this->name}.";
+  }
+}
+
+$apple = new Fruit("Apple");
+?>
+PHP OOP - Access Modifiers
+PHP - Access Modifiers
+Properties and methods can have access modifiers which control where they can be accessed.
+
+public - Can be accessed from everywhere. (Default)
+protected - Can be accessed within the class and by derived classes.
+private - Can be accessed only within the class.
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+  protected $color;
+  private $weight;
+}
+
+$mango = new Fruit();
+$mango->name = 'Mango'; // OK
+$mango->color = 'Yellow'; // ERROR
+$mango->weight = '300'; // ERROR
+?>
+PHP OOP - Inheritance
+PHP - What is Inheritance?
+Inheritance in OOP = When a class derives from another class.
+
+php
+Copy
+Edit
+<?php
+class Fruit {
+  public $name;
+  public $color;
+  public function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color;
+  }
+  public function intro() {
+    echo "The fruit is {$this->name} and the color is {$this->color}.";
+  }
+}
+
+class Strawberry extends Fruit {
+  public function message() {
+    echo "Am I a fruit or a berry? ";
+  }
+}
+
+$strawberry = new Strawberry("Strawberry", "red");
+$strawberry->message();
+$strawberry->intro();
+?>
+PHP - final Keyword
+The final keyword can be used to prevent class inheritance or method overriding.
+
+Preventing Class Inheritance
+php
+Copy
+Edit
+<?php
+final class Fruit {
+  // some code
+}
+
+// will result in error
+class Strawberry extends Fruit {
+  // some code
+}
+?>
+Preventing Method Overriding
+php
+Copy
+Edit
+<?php
+class Fruit {
+  final public function intro() {
+    // some code
+  }
+}
+
+class Strawberry extends Fruit {
+  // will result in error
+  public function intro() {
+    // some code
+  }
+}
+?>
+PHP OOP - Class Constants
+PHP - Class Constants
+A class constant is declared inside a class with the const keyword.
+
+php
+Copy
+Edit
+<?php
+class Goodbye {
+  const LEAVING_MESSAGE = "Thank you for visiting W3Schools.com!";
+}
+
+echo Goodbye::LEAVING_MESSAGE;
+?>
 
 
 
