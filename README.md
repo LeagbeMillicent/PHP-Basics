@@ -1093,7 +1093,7 @@ $cars = array("Volvo", "BMW", "Toyota");
 echo count($cars);
 ```
 
-> For a complete reference of all array functions, go to our **complete PHP Array Reference**.
+> For a complete reference of all array functions, go to "https://www.w3schools.com/php/php_ref_array.asp".
 
 ---
 
