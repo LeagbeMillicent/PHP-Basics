@@ -1989,4 +1989,245 @@ echo Goodbye::LEAVING_MESSAGE;
 ?>
 
 
+# PHP OOP - Abstract Classes
+
+## PHP - What are Abstract Classes and Methods?
+
+Abstract classes and methods are used when the parent class has a named method but requires its child class(es) to implement the tasks.
+
+An **abstract class** is a class that contains at least one **abstract method**. An **abstract method** is declared but not implemented in the code.
+
+An abstract class or method is defined with the `abstract` keyword:
+
+### Syntax
+```php
+abstract class ParentClass {
+  abstract public function someMethod1();
+  abstract public function someMethod2($name, $color);
+  abstract public function someMethod3() : string;
+}
+```
+
+When inheriting from an abstract class:
+- The child class must define the method with the same name and a compatible access modifier.
+- The number of required arguments must be the same, but optional arguments may be added.
+
+### Example
+```php
+// Parent class
+abstract class Car {
+  public $name;
+  public function __construct($name) {
+    $this->name = $name;
+  }
+  abstract public function intro() : string;
+}
+
+// Child classes
+class Audi extends Car {
+  public function intro() : string {
+    return "Choose German quality! I'm an $this->name!";
+  }
+}
+
+class Volvo extends Car {
+  public function intro() : string {
+    return "Proud to be Swedish! I'm a $this->name!";
+  }
+}
+
+class Citroen extends Car {
+  public function intro() : string {
+    return "French extravagance! I'm a $this->name!";
+  }
+}
+
+// Create objects from the child classes
+$audi = new Audi("Audi");
+echo $audi->intro();
+echo "<br>";
+
+$volvo = new Volvo("Volvo");
+echo $volvo->intro();
+echo "<br>";
+
+$citroen = new Citroen("Citroen");
+echo $citroen->intro();
+```
+
+---
+
+# PHP OOP - Interfaces
+
+## PHP - What are Interfaces?
+
+Interfaces allow you to specify what methods a class should implement. Interfaces make it easy to use a variety of different classes in the same way. When multiple classes use the same interface, it is called "polymorphism".
+
+Interfaces are declared with the `interface` keyword:
+
+### Syntax
+```php
+interface InterfaceName {
+  public function someMethod1();
+  public function someMethod2($name, $color);
+  public function someMethod3() : string;
+}
+```
+
+### Example
+```php
+interface Animal {
+  public function makeSound();
+}
+
+class Cat implements Animal {
+  public function makeSound() {
+    echo "Meow";
+  }
+}
+
+$animal = new Cat();
+$animal->makeSound();
+```
+
+---
+
+# PHP OOP - Traits
+
+## PHP - What are Traits?
+
+PHP supports single inheritance, meaning a child class can inherit only from one parent class. To inherit multiple behaviors, **traits** are used.
+
+Traits are declared with the `trait` keyword:
+
+### Syntax
+```php
+trait TraitName {
+  // some code...
+}
+```
+
+### Example
+```php
+trait message1 {
+  public function msg1() {
+    echo "OOP is fun! ";
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+$obj = new Welcome();
+$obj->msg1();
+```
+
+---
+
+# PHP OOP - Static Methods
+
+## PHP - Static Methods
+
+Static methods can be called directly without creating an instance of the class first. They are declared using the `static` keyword:
+
+### Syntax
+```php
+class ClassName {
+  public static function staticMethod() {
+    echo "Hello World!";
+  }
+}
+```
+
+### Example
+```php
+class greeting {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+greeting::welcome();
+```
+
+---
+
+# PHP OOP - Static Properties
+
+## PHP - Static Properties
+
+Static properties can be called directly without creating an instance of a class. They are declared using the `static` keyword:
+
+### Syntax
+```php
+class ClassName {
+  public static $staticProp = "Example";
+}
+```
+
+### Example
+```php
+class pi {
+  public static $value = 3.14159;
+}
+
+echo pi::$value;
+```
+
+---
+
+# PHP Namespaces
+
+## PHP - What are Namespaces?
+
+Namespaces allow for better organization and prevent name conflicts by grouping related classes together.
+
+### Declaring a Namespace
+```php
+namespace Html;
+```
+
+### Example
+```php
+namespace Html;
+class Table {
+  public $title = "";
+  public $numRows = 0;
+  public function message() {
+    echo "<p>Table '{$this->title}' has {$this->numRows} rows.</p>";
+  }
+}
+
+$table = new Table();
+$table->title = "My table";
+$table->numRows = 5;
+```
+
+---
+
+# PHP Iterables
+
+## PHP - What is an Iterable?
+
+An iterable is any value that can be looped through using a `foreach()` loop.
+
+### Example: Using Iterables
+```php
+function printIterable(iterable $myIterable) {
+  foreach($myIterable as $item) {
+    echo $item;
+  }
+}
+
+$arr = ["a", "b", "c"];
+printIterable($arr);
+```
+
+---
+
+
+
+
+
 
