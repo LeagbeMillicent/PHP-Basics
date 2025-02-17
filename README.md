@@ -708,3 +708,227 @@ function test_input($data) {
 Notice that at the start of the script, we check whether the form has been submitted using $_SERVER["REQUEST_METHOD"]. If the REQUEST_METHOD is POST, then the form has been submitted - and it should be validated. If it has not been submitted, skip the validation and display a blank form.
 
 
+## PHP Functions
+
+The real power of PHP comes from its functions.
+
+PHP has more than **1000 built-in functions**, and in addition, you can create your own custom functions.
+
+---
+
+### PHP Built-in Functions
+PHP has over **1000 built-in functions** that can be called directly from within a script to perform a specific task.
+
+> Please check out our **PHP reference** for a complete overview of the PHP built-in functions.
+
+---
+
+### PHP User Defined Functions
+Besides the built-in PHP functions, it is possible to create your own functions.
+
+- A function is a **block of statements** that can be used repeatedly in a program.
+- A function **will not execute automatically** when a page loads.
+- A function will be executed by a **call to the function**.
+
+#### Create a Function
+A user-defined function declaration starts with the keyword `function`, followed by the **name of the function**:
+
+```php
+function myMessage() {
+  echo "Hello world!";
+}
+```
+
+> **Note:** A function name must start with a **letter or an underscore**. Function names are **NOT case-sensitive**.
+
+**Tip:** Give the function a name that reflects what the function does!
+
+#### Call a Function
+To call the function, just write its name followed by parentheses `()`:
+
+```php
+function myMessage() {
+  echo "Hello world!";
+}
+
+myMessage();
+```
+
+The function **outputs "Hello world!"**.
+
+---
+
+### PHP Function Arguments
+Information can be passed to functions through **arguments**.
+
+#### Example: Function with One Argument
+```php
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim");
+familyName("Borge");
+```
+
+#### Example: Function with Two Arguments
+```php
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+```
+
+---
+
+### PHP Default Argument Value
+A function can have a **default parameter**:
+
+```php
+function setHeight($minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+```
+
+---
+
+### PHP Functions - Returning Values
+To **return a value**, use the `return` statement:
+
+```php
+function sum($x, $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+```
+
+---
+
+### Passing Arguments by Reference
+By default, function arguments are passed **by value**.
+To pass **by reference**, use the `&` operator:
+
+```php
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num;
+```
+
+---
+
+### Variable Number of Arguments
+Use `...` to accept an unknown number of arguments (**variadic function**):
+
+```php
+function sumMyNumbers(...$x) {
+  $n = 0;
+  foreach($x as $num) {
+    $n += $num;
+  }
+  return $n;
+}
+
+echo sumMyNumbers(5, 2, 6, 2, 7, 7);
+```
+
+> **Note:** You can only have **one** variadic argument, and it must be **the last argument**.
+
+#### Correct Example:
+```php
+function myFamily($lastname, ...$firstname) {
+  $txt = "";
+  foreach($firstname as $name) {
+    $txt .= "Hi, $name $lastname.<br>";
+  }
+  return $txt;
+}
+
+echo myFamily("Doe", "Jane", "John", "Joey");
+```
+
+#### Incorrect Example (will raise an error):
+```php
+function myFamily(...$firstname, $lastname) { // ERROR
+  // Function code
+}
+```
+
+---
+
+### PHP is a Loosely Typed Language
+PHP automatically assigns a **data type** to variables based on their values.
+
+#### Example: Without `strict`
+```php
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+
+echo addNumbers(5, "5 days");
+// Output: 10 (PHP converts "5 days" to int(5))
+```
+
+#### Example: With `strict`
+```php
+<?php declare(strict_types=1);
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+
+echo addNumbers(5, "5 days"); // Error: Type mismatch
+?>
+```
+
+---
+
+### PHP Return Type Declarations
+In PHP 7+, you can **declare return types**:
+
+```php
+<?php declare(strict_types=1);
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+
+echo addNumbers(1.2, 5.2);
+?>
+```
+
+You can specify a different return type than the argument types:
+
+```php
+<?php declare(strict_types=1);
+function addNumbers(float $a, float $b) : int {
+  return (int)($a + $b);
+}
+
+echo addNumbers(1.2, 5.2); // Output: 6
+?>
+```
+
+---
+
+This guide covers the basics of **PHP functions** including **user-defined functions, arguments, return values, references, variadic functions, and type declarations**.
+
+
+
+
