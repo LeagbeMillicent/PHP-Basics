@@ -1250,6 +1250,247 @@ $pattern = "/ba(na){2}/i";
 echo preg_match($pattern, $str);
 ```
 
+## PHP Date and Time
+
+The PHP `date()` function is used to format a date and/or a time.
+
+### The PHP `date()` Function
+The PHP `date()` function formats a timestamp to a more readable date and time.
+
+#### Syntax
+```php
+date(format, timestamp)
+```
+- **format** (Required): Specifies the format of the timestamp.
+- **timestamp** (Optional): Specifies a timestamp. Default is the current date and time.
+
+A timestamp is a sequence of characters, denoting the date and/or time at which a certain event occurred.
+
+### Get a Date
+The required `format` parameter of the `date()` function specifies how to format the date (or time).
+
+Commonly used characters for dates:
+- `d` - Day of the month (01 to 31)
+- `m` - Month (01 to 12)
+- `Y` - Year (in four digits)
+- `l` (lowercase 'L') - Day of the week
+
+Other characters like `/`, `.`, or `-` can be inserted for formatting.
+
+#### Example:
+```php
+<?php
+echo "Today is " . date("Y/m/d") . "<br>";
+echo "Today is " . date("Y.m.d") . "<br>";
+echo "Today is " . date("Y-m-d") . "<br>";
+echo "Today is " . date("l");
+?>
+```
+
+### PHP Tip - Automatic Copyright Year
+Use the `date()` function to automatically update the copyright year:
+```php
+&copy; 2010-<?php echo date("Y");?>
+```
+
+### Get a Time
+Commonly used characters for times:
+- `H` - 24-hour format (00 to 23)
+- `h` - 12-hour format (01 to 12)
+- `i` - Minutes (00 to 59)
+- `s` - Seconds (00 to 59)
+- `a` - AM/PM (lowercase)
+
+#### Example:
+```php
+<?php
+echo "The time is " . date("h:i:sa");
+?>
+```
+
+### Get Your Time Zone
+If the time returned is incorrect, set the desired timezone.
+
+#### Example:
+```php
+<?php
+date_default_timezone_set("America/New_York");
+echo "The time is " . date("h:i:sa");
+?>
+```
+
+### Create a Date With `mktime()`
+The `mktime()` function returns the Unix timestamp for a given date.
+
+#### Syntax:
+```php
+mktime(hour, minute, second, month, day, year)
+```
+
+#### Example:
+```php
+<?php
+$d = mktime(11, 14, 54, 8, 12, 2014);
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?>
+```
+
+### Create a Date From a String With `strtotime()`
+The `strtotime()` function converts a human-readable date string into a Unix timestamp.
+
+#### Syntax:
+```php
+strtotime(time, now)
+```
+
+#### Example:
+```php
+<?php
+$d = strtotime("10:30pm April 15 2014");
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?>
+```
+
+You can use different values with `strtotime()`:
+```php
+<?php
+echo date("Y-m-d h:i:sa", strtotime("tomorrow")) . "<br>";
+echo date("Y-m-d h:i:sa", strtotime("next Saturday")) . "<br>";
+echo date("Y-m-d h:i:sa", strtotime("+3 Months")) . "<br>";
+?>
+```
+
+### More Date Examples
+Output dates for the next six Saturdays:
+```php
+<?php
+$startdate = strtotime("Saturday");
+$enddate = strtotime("+6 weeks", $startdate);
+while ($startdate < $enddate) {
+  echo date("M d", $startdate) . "<br>";
+  $startdate = strtotime("+1 week", $startdate);
+}
+?>
+```
+
+Calculate the number of days until July 4th:
+```php
+<?php
+$d1 = strtotime("July 04");
+$d2 = ceil(($d1 - time()) / 60 / 60 / 24);
+echo "There are " . $d2 ." days until 4th of July.";
+?>
+```
+
+## PHP Include Files
+The `include` and `require` statements insert content from one file into another.
+
+### Difference Between `include` and `require`
+- `require` causes a fatal error and stops execution if the file is missing.
+- `include` only generates a warning and continues execution.
+
+#### Syntax:
+```php
+include 'filename';
+require 'filename';
+```
+
+#### Example:
+```php
+<?php include 'footer.php'; ?>
+```
+
+### PHP Include vs. Require Example
+Using `include` (script continues even if file is missing):
+```php
+<?php include 'noFileExists.php';
+echo "I have a $color $car.";
+?>
+```
+Using `require` (script stops if file is missing):
+```php
+<?php require 'noFileExists.php';
+echo "I have a $color $car.";
+?>
+```
+
+## PHP File Handling
+### PHP `readfile()` Function
+The `readfile()` function reads a file and writes it to the output buffer.
+```php
+<?php
+echo readfile("webdictionary.txt");
+?>
+```
+
+### PHP Create File - `fopen()`
+The `fopen()` function creates or opens a file.
+```php
+$myfile = fopen("testfile.txt", "w");
+```
+
+### PHP Write to File - `fwrite()`
+```php
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "John Doe\n";
+fwrite($myfile, $txt);
+$txt = "Jane Doe\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+```
+
+### PHP Append Text
+Appending text to an existing file:
+```php
+<?php
+$myfile = fopen("newfile.txt", "a") or die("Unable to open file!");
+$txt = "Donald Duck\n";
+fwrite($myfile, $txt);
+$txt = "Goofy Goof\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+```
+
+## PHP File Upload
+### Configure `php.ini`
+Ensure `file_uploads` is enabled:
+```ini
+file_uploads = On
+```
+
+### Create an HTML Form
+```html
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+```
+
+### Create `upload.php`
+```php
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+if (isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if ($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+?>
+```
+
 
 
 
